@@ -1,6 +1,5 @@
-package com.example.springSecurity.Repositories;
+package com.example.springSecurity.Repositories.RepositoryUsers;
 
-import com.example.springSecurity.Model.Entitys.User.Cliente;
 import com.example.springSecurity.Model.Entitys.User.Empresa;
 import org.springframework.data.jpa.repository.JpaRepository;
 

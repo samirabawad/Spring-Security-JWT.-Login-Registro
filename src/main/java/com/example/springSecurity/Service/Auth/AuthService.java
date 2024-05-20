@@ -7,12 +7,12 @@ import com.example.springSecurity.Model.DTO.Register.RegisterRequestEmpresa;
 import com.example.springSecurity.Model.Entitys.User.Cliente;
 import com.example.springSecurity.Model.Entitys.User.Empresa;
 import com.example.springSecurity.Model.Entitys.User.Role;
-import com.example.springSecurity.Repositories.IClienteRepository;
-import com.example.springSecurity.Repositories.IEmpresaRepository;
+import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
+import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
+import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class AuthService {
     private final IClienteRepository clienteRepository;
     private final IEmpresaRepository empresaRepository;
+    private final IAdminRepository adminRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
@@ -38,6 +39,8 @@ public class AuthService {
                 .token(token)
                 .build();
     }
+
+    //Registro para Cliente.
     public AuthResponse registerCliente(RegisterRequestCliente request){
             //se utiliza patron de diseño builder, luego cambiarlo por dto.
             Cliente cliente = Cliente.builder()
@@ -56,6 +59,8 @@ public class AuthService {
                 .token(jwtService.getToken(cliente))
                 .build();
     }
+
+    //Registro para Empresa.
     public AuthResponse registerEmpresa(RegisterRequestEmpresa request) {
         Empresa empresa = Empresa.builder()
                 .rut(request.getRut())
@@ -72,8 +77,8 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(jwtService.getToken(empresa))
                 .build();
-
     }
+
 }
 
 
