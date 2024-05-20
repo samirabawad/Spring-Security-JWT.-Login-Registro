@@ -42,7 +42,7 @@ public class ApplicationConfig {
     }
     @Bean
     public UserDetailsService userDetailService() {
-        return username -> clienteRepository.findByUsername(username)
+        return username -> clienteRepository.findByRut(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }

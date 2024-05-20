@@ -2,12 +2,11 @@ package com.example.springSecurity.Service.Auth;
 
 import com.example.springSecurity.Model.DTO.Auth.AuthResponse;
 import com.example.springSecurity.Model.DTO.Auth.LoginRequest;
-import com.example.springSecurity.Model.DTO.Auth.RegisterRequest;
+import com.example.springSecurity.Model.DTO.Register.RegisterRequestCliente;
 import com.example.springSecurity.Model.Entitys.User.Cliente;
 import com.example.springSecurity.Model.Entitys.User.Role;
 import com.example.springSecurity.Repositories.IClienteRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.patterns.IToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,17 +23,17 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails cliente = clienteRepository.findByUsername(request.getUsername()).orElseThrow();
+        UserDetails cliente = clienteRepository.findByRut(request.getUsername()).orElseThrow();
         String token = jwtService.getToken(cliente);
         //patron de diseño build.
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
-    public AuthResponse register(RegisterRequest request){
+    public AuthResponse register(RegisterRequestCliente request){
             //se utiliza patron de diseño builder, luego cambiarlo por dto.
             Cliente cliente = Cliente.builder()
-                    .username(request.getUsername())
+                    .rut(request.getRut())
                     .password(passwordEncoder.encode(request.getPassword()))
                     .firstname(request.getFirstname())
                     .lastname(request.getLastname())

@@ -1,4 +1,4 @@
-package com.example.springSecurity.Model.DTO.Auth;
+package com.example.springSecurity.Model.DTO.Register;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
-    String username;
+public class RegisterRequestCliente {
+    String rut;
     String password;
     String firstname;
     String lastname;

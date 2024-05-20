@@ -17,14 +17,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(columnNames = {"username"})})
+@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut"})})
 //implementa userDetails para trabajar con la autentificación
 public class Cliente implements UserDetails {
     @Id
     @GeneratedValue
     Integer id;
     @Column(nullable = false)
-    String username;
+    String rut;
+    @Column(nullable = false)
     String password;
     @Column(nullable = false)
     String firstname;
@@ -39,6 +40,12 @@ public class Cliente implements UserDetails {
         //retorna una lista que contiene un unico obj que representa la autoridad otorgada al usuario atenticado.
         //por esto se especifica el campo role
         return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    //se sobre escribe getUsername() que por defecto busca el campo username
+    @Override
+    public String getUsername() {
+        return getRut();
     }
 
     @Override
