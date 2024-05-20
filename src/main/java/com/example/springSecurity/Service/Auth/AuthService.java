@@ -10,6 +10,7 @@ import com.example.springSecurity.Model.Entitys.User.Role;
 import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;
+import com.example.springSecurity.Service.JWT.JwtAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,23 +24,25 @@ public class AuthService {
     private final IClienteRepository clienteRepository;
     private final IEmpresaRepository empresaRepository;
     private final IAdminRepository adminRepository;
-    private final JwtService jwtService;
+    private final JwtAuthService jwtAuthService;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final CustomUserDetailsService customUserDetailsService;
 
+    //LOGIN
     public AuthResponse login(LoginRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getRut(), request.getPassword()));
-        // Busca el usuario en ambos repositorios
+        // Busca el usuario en todos los repositorios
         UserDetails user =  customUserDetailsService.loadUserByUsername(request.getRut());
 
-        String token = jwtService.getToken(user);
+        String token = jwtAuthService.getToken(user); //Se genera token si existe usuario.
         //patron de diseño build.
         return AuthResponse.builder()
                 .token(token)
                 .build();
     }
 
+    //REGISTROS
     //Registro para Cliente.
     public AuthResponse registerCliente(RegisterRequestCliente request){
             //se utiliza patron de diseño builder, luego cambiarlo por dto.
@@ -56,7 +59,7 @@ public class AuthService {
 
         //Se trabaja con el patron de diseño builder para la construccion del obj AuthResponse.
         return AuthResponse.builder()
-                .token(jwtService.getToken(cliente))
+                .token(jwtAuthService.getToken(cliente)) //Se genera token si existe usuario.
                 .build();
     }
 
@@ -75,10 +78,9 @@ public class AuthService {
 
         //Se trabaja con el patron de diseño builder para la construccion del obj AuthResponse.
         return AuthResponse.builder()
-                .token(jwtService.getToken(empresa))
+                .token(jwtAuthService.getToken(empresa)) //Se genera token si existe usuario.
                 .build();
     }
-
 }
 
 

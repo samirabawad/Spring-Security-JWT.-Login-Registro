@@ -2,9 +2,12 @@ package com.example.springSecurity.Controller.Auth;
 
 import com.example.springSecurity.Model.DTO.Auth.AuthResponse;
 import com.example.springSecurity.Model.DTO.Auth.LoginRequest;
+import com.example.springSecurity.Model.DTO.Recover.RecoverRequest;
+import com.example.springSecurity.Model.DTO.Recover.RecoverResponse;
 import com.example.springSecurity.Model.DTO.Register.RegisterRequestCliente;
 import com.example.springSecurity.Model.DTO.Register.RegisterRequestEmpresa;
 import com.example.springSecurity.Service.Auth.AuthService;
+import com.example.springSecurity.Service.Auth.PasswordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final AuthService authService;
+    private final PasswordService passwordService;
 
     @PostMapping(value ="login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
@@ -32,4 +36,11 @@ public class AuthController {
     public ResponseEntity<AuthResponse> registerEmpresa(@RequestBody RegisterRequestEmpresa request) {
         return ResponseEntity.ok(authService.registerEmpresa(request));
     }
+
+    //envia de respuesta el token de recuperacion
+    @PostMapping(value = "recover")
+    public ResponseEntity<RecoverResponse> recoverUser(@RequestBody RecoverRequest request) {
+        return ResponseEntity.ok(passwordService.recoverUser(request));
+    }
 }
+

@@ -1,6 +1,7 @@
 package com.example.springSecurity.JWT;
 
-import com.example.springSecurity.Service.Auth.JwtService;
+import com.example.springSecurity.Service.JWT.JwtAuthService;
+import com.example.springSecurity.Service.JWT.JwtRecoverService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,11 +25,31 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JwtService jwtService;
+    private final JwtAuthService jwtAuthService;
     private final UserDetailsService userDetailsService;
+    private final JwtRecoverService jwtRecoverService;
 
+    //SE VALIDA SI EL TOKEN ES VALIDO AUN.
+    private boolean isTokenValid(String token, UserDetails userDetails, String requestURI) {
+        if (requestURI.contains("/auth/recover/user")) {
+            return jwtRecoverService.isRecoveryTokenValid(token, userDetails);
+        } else {
+            return jwtAuthService.isTokenValid(token, userDetails);
+        }
+    }
+
+    //DEVUELVE EL TOKEN
+    private String getTokenFromRequest(HttpServletRequest request) {
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+
+        if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
+            return authHeader.substring(7);
+        }
+        return null;
+    }
+
+    //FUNCION OBTIENE EL TOKEN DEL REQUEST, UTILIZANDO FUNCIONES DE ARRIBA.
     @Override
-    //se obtiene el token del request
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String token = getTokenFromRequest(request);
         final String rut;
@@ -37,15 +58,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+        //1. INTENTA OBTENER RUT DEL TOKEN.
+        rut = jwtAuthService.getUsernameFromToken(token);
 
-        rut = jwtService.getUsernameFromToken(token);
-
-        //si no puede obtener el username del token, se busca de la bd
+        //2. SI NO LO OBTIENE, LO INTENTA OBTENER DE LA BASE DE DATOS.
         if(rut != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(rut);
 
-            //Se valida si token es valido.
-            if(jwtService.isTokenValid(token, userDetails)){
+            //SE OBTIENE EL TOKEN GENERADO (ACCESO O RECUPERACION) Y SE VALIDA.
+            if(isTokenValid(token, userDetails, request.getRequestURI())){
                 UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
@@ -56,16 +77,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
-
         filterChain.doFilter(request, response);
     }
-    //metodo devuelve el token
-    private String getTokenFromRequest(HttpServletRequest request) {
-        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if(StringUtils.hasText(authHeader) && authHeader.startsWith("Bearer ")) {
-            return authHeader.substring(7);
-        }
-        return null;
-    }
 }
