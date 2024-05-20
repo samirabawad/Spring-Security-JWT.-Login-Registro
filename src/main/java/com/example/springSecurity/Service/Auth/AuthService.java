@@ -22,8 +22,8 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        UserDetails cliente = clienteRepository.findByRut(request.getUsername()).orElseThrow();
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getRut(), request.getPassword()));
+        UserDetails cliente = clienteRepository.findByRut(request.getRut()).orElseThrow();
         String token = jwtService.getToken(cliente);
         //patron de diseño build.
         return AuthResponse.builder()
@@ -37,7 +37,8 @@ public class AuthService {
                     .password(passwordEncoder.encode(request.getPassword()))
                     .firstname(request.getFirstname())
                     .lastname(request.getLastname())
-                    .country(request.getCountry())
+                    .email(request.getEmail())
+                    .celular(request.getCelular())
                     .role(Role.USER)
                     .build();
         clienteRepository.save(cliente);

@@ -14,7 +14,6 @@ public class RegisterRequestEmpresa {
     String password;
     String nombre;
     String giro;
-    String comuna;
-    String celular;
     String email;
+    String celular;
 }

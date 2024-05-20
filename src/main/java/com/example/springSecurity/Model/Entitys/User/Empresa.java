@@ -1,5 +1,6 @@
 package com.example.springSecurity.Model.Entitys.User;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,9 +18,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut"})})
+@Table(name = "empresa", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut"})})
 //implementa userDetails para trabajar con la autentificación
-public class Cliente implements UserDetails {
+public class Empresa implements UserDetails {
     @Id
     @GeneratedValue
     Integer id;
@@ -28,9 +29,9 @@ public class Cliente implements UserDetails {
     @Column(nullable = false)
     String password;
     @Column(nullable = false)
-    String firstname;
+    String nombre;
     @Column(nullable = false)
-    String lastname;
+    String giro;
     String email;
     @Column(nullable = false)
     String celular;
@@ -71,4 +72,3 @@ public class Cliente implements UserDetails {
         return true;
     }
 }
-

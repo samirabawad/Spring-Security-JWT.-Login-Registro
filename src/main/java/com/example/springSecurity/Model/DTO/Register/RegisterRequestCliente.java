@@ -14,5 +14,6 @@ public class RegisterRequestCliente {
     String password;
     String firstname;
     String lastname;
-    String country;
+    String email;
+    String celular;
 }
