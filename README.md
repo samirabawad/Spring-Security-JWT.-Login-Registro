@@ -57,4 +57,12 @@ Aca se definen a que recursos tiene acceso el usuario, segun sus autorizaciones.
 
 
 
+Proceso de Spring boot:
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/1332e8a3-130b-40d0-b14c-cf52b415461f)
+
+
+
+
+
+
 
