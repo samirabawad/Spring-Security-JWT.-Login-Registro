@@ -92,7 +92,8 @@ PROCESO DE AUTENTICACION JWT.
 3. Si existe un Token de acceso, se dirige a JWTService para extraer el username del token. Luego verifica que el token sea valido.
 4. Luego, retorna el username al filtro, el cual lo envia a UserDetailsService. Dentro, mediante el metodo loadUserByUsername() crea el objeto usuario implementando UserDetails.
 5. El usuario es devuelto al filtro.
-6. Si hay usuario, se acepta la solicitud y se envia al controlador, donde se genera la respuesta HTTP en formato json al cliente.
+6. Si hay usuario, se verifica si tiene permisos para su solicitud.
+7.  Si tiene los permisos, acepta la solicitud y la envia al controlador, donde se genera la respuesta HTTP en formato json al cliente.
 
 
 
