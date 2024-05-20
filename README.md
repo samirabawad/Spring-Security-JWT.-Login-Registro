@@ -101,3 +101,25 @@ PROCESO DE SPRING SECURITY + JWT.
 
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/6ced1a24-56a0-401f-9efc-4c7637fc2cdf)
 
+
+
+SPRING SECURITY PARA VARIOS TIPOS DE USUARIO Y ROLES:
+En vez de usar el servicio por defecto UserDetailsService de Spring, creamos un servicio que implemente o extienda de este servicio: En este proyecto, lo llamamos CustomUserDetailsService.
+En esto, hacemos que el llamado a la funcion loadUserByUsername() en AuthenticationService sea recibido por este nuevo servicio.
+
+Dentro del servicio sobreescribimos la funcion loadUserByUsername(), para que busque en todos los repositorios de nuestros distintos usuarios y dependiende de en que repositorio se escuentre, retorna al usuario correspondiente y se genera el token. Recordar que estos ya vienen diferenciados en sus entidades, por su ROLE (ADMIN, CLIENTE y Empresa). Con esto ya esta lista la funcionalidad del token.
+
+Luego, para las peticiones de registro, se modifica el controlador para generar un endpoint unico para la entidad a registrar. En este proyecto son dos: /register/cliente, /register/empresa.
+
+Luego, se modifica la clase que se envia como formato de peticion. En este proyecto al ser dos entidades al registrar, se generan dos clases para el formato del request:
+RegisterRequestCliente, RegisterRequestEmpresa. En este proyecto estan guardadas como objetos DTO.
+
+Se agregan las clases en el controlador, como tipos de request a recibir en los endpoints correspondientes.
+
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/54398a91-f383-4d96-930a-6561f7fe4baa)
+
+
+La estructura del proyecto completo queda de la siguiente forma:
+
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/0e7be151-9dce-414c-a339-790586f977a4)
+
