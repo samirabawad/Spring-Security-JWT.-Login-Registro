@@ -20,6 +20,12 @@ Spring Security:
 PROCESO DE AUTENTICACION.
 Funcionamiento.
 Es un framework de Spring que aporta un conjunto de clases que permite que la autenticación se realice mediante nombre de usuario y contraseña.
+Este proceso se realiza antes del acceso a los endpoints del controlador: 
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/60ff9df9-e601-4bb5-b2ac-d9c80e7a993d)
+
+
+
+
 Para utilizar los servicios de autentificación, es necesario configurar un filtro, junto con AuthenticationProvider.
 Si un usuario inicia el proceso de autentificacion, crea un objeto Authentication con elementos principales y credenciales.
 Si se realiza la autentificacion, se crea un objeto UsernamePasswordAuthenticationToken.
