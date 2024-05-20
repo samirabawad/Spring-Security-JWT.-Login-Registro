@@ -99,4 +99,5 @@ PROCESO DE AUTENTICACION JWT.
 
 PROCESO DE SPRING SECURITY + JWT.
 
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/6ced1a24-56a0-401f-9efc-4c7637fc2cdf)
 
