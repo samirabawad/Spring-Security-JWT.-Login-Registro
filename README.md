@@ -60,7 +60,14 @@ Aca se definen a que recursos tiene acceso el usuario, segun sus autorizaciones.
 Proceso de Spring boot:
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/1332e8a3-130b-40d0-b14c-cf52b415461f)
 
+1. El request es interceptado por el filtro.
+2. La responsabilidad de autentication se delega a AuthenticationManager.
+3. AuthenticationManager utiliza los providers dado que estos implementan la logica de autenticacion (en este proyecto se ocupan los providers: DAO Authentication Provider y JDBC UserDetailsManager).
+4. El Provider busca el usuario con el UserDetailsService y valida el password usando PasswordEncoder.
+5. El resultado de autenticacion es retornado al Filter.
+6. Los detalles de la autenticacion son almacenados en el SecurityContext.
 
+   
 
 
 
