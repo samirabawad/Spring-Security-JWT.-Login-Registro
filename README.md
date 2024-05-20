@@ -15,7 +15,34 @@ La respuesta se devuelve en mismo orden, pasando por la capa de datos, servicio 
 
 
 
-API REST con Spring Security.
+Spring Security:
+Funcionamiento.
+Es un framework de Spring que aporta un conjunto de clases que permite que la autenticación se realice mediante nombre de usuario y contraseña.
+Para utilizar los servicios de autentificación, es necesario configurar un filtro, junto con AuthenticationProvider.
+Si un usuario inicia el proceso de autentificacion, crea un objeto Authentication con elementos principales y credenciales.
+Si se realiza la autentificacion, se crea un objeto UsernamePasswordAuthenticationToken.
+
+
+AuthenticationManager.
+Una vez obtenido el objeto Authentication, se envia al AuthenticationManager, donde se realiza una comprobacion del contenido del objeto con las credenciales esperadas (nombre y contraseña).
+Si la comprobacion es exitosa, se añade al objeto Authentication las autorizaciones asociadas a esa identidad (roles).
+AuthenticationManager es un Bean de tipo ProviderManager (este es un gestor de autenticacion por defecto de Spring).
+
+AuthenticationProvider.
+Una vez que los detalles de autenticación se recogen en el agente de usuario, un objeto "solicitud de autenticación" se construye y se presenta a una AuthenticationProvider.
+Este es el responsable de tomar el objeto y decidir si es valido o no.
+Si es valido, pone la autenticacion en el SecurityContextHolder. De lo contrario, rechaza la solicitud y muestra un mensaje de error.
+
+DaoAthenticationProvider.
+Es una interfaz para acceder a los datos almacenados en la base de datos.
+Para evitar que se acceda directamente al contenido de la base datos, se puede configurar el DAO mediante la interfaz de Spring UserDetailsService.
+
+
+UserDetailsService.
+Interfaz de acceso a datos de Spring, que contiene un unico metodo llamado loadUserByUsername().
+Mediante este metodo, accede a la informacion del usuario mediante su nombre de usuario.
+
+
 
 
 
