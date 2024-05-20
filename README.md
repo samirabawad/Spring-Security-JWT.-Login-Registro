@@ -116,10 +116,8 @@ RegisterRequestCliente, RegisterRequestEmpresa. En este proyecto estan guardadas
 
 Se agregan las clases en el controlador, como tipos de request a recibir en los endpoints correspondientes.
 
-![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/54398a91-f383-4d96-930a-6561f7fe4baa)
-
-
 La estructura del proyecto completo queda de la siguiente forma:
 
-![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/0e7be151-9dce-414c-a339-790586f977a4)
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/8b682169-9821-4b4e-abab-2f647237d01b)
+
 
