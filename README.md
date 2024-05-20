@@ -71,5 +71,23 @@ Proceso de Spring boot:
 
 
 
+JWT: JSON WEB TOKEN.
+JWT participa en el proceso de atenticacion, verificando la identidad de usuario.
+Es importante recalcar que se encarga solo de la autenticacion, no de la autorización.
+
+Una vez el usuario es autenticado, se crea un JWT de acceso. En este proyecto, se utiliza Bearer JWT.
+Un token se compone de:
+1. HEADER: Este es el tipo de algoritmo a utilizar para la encriptacion. En este proyecto se ocupa HS256.
+3. PAYLOAD: Contiene las propiedades, conocidas como claims. Entre ellos están el nombre del usuario.
+4. SIGNATURE: Usado para validar que el token es valido y no ha sido modificado. Para ello, utiliza una clave secreta : SECRET_KEY.
+
+#foto sacada de : https://jwt.io/
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/4dda5039-3366-4d3e-9c95-4336f66dc6d5)
+
+
+   
+
+
+
 
 
