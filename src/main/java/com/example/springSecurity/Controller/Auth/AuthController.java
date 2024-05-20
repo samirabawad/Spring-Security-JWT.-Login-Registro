@@ -3,6 +3,7 @@ package com.example.springSecurity.Controller.Auth;
 import com.example.springSecurity.Model.DTO.Auth.AuthResponse;
 import com.example.springSecurity.Model.DTO.Auth.LoginRequest;
 import com.example.springSecurity.Model.DTO.Register.RegisterRequestCliente;
+import com.example.springSecurity.Model.DTO.Register.RegisterRequestEmpresa;
 import com.example.springSecurity.Service.Auth.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +24,12 @@ public class AuthController {
         return ResponseEntity.ok(authService.login(request));
     }
 
-    @PostMapping(value = "register")
-    public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequestCliente request) {
-        return ResponseEntity.ok(authService.register(request));
+    @PostMapping(value = "register/cliente")
+    public ResponseEntity<AuthResponse> registerCliente(@RequestBody RegisterRequestCliente request) {
+        return ResponseEntity.ok(authService.registerCliente(request));
+    }
+    @PostMapping(value = "register/empresa")
+    public ResponseEntity<AuthResponse> registerEmpresa(@RequestBody RegisterRequestEmpresa request) {
+        return ResponseEntity.ok(authService.registerEmpresa(request));
     }
 }

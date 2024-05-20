@@ -1,6 +1,8 @@
 package com.example.springSecurity.Config;
 
 import com.example.springSecurity.Repositories.IClienteRepository;
+import com.example.springSecurity.Repositories.IEmpresaRepository;
+import com.example.springSecurity.Service.Auth.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
-
-    private final IClienteRepository clienteRepository;
+    private final CustomUserDetailsService customUserDetailsService;
     //metodo permite acceder a la instancia de AuthenticationManager.
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -28,9 +29,9 @@ public class ApplicationConfig {
     //metodo permite acceder a la instancia de AuthenticationProvider.
     //Se trabajara con la instancia DAO de authenticationProvider para crear la instancia.
     @Bean
-    public AuthenticationProvider authenticationProvider() {
+    public AuthenticationProvider authenticationProvider(CustomUserDetailsService customUserDetailsService) {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailService());
+        authenticationProvider.setUserDetailsService(customUserDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
@@ -41,8 +42,12 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
     @Bean
-    public UserDetailsService userDetailService() {
-        return username -> clienteRepository.findByRut(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    public UserDetailsService userDetailsService() {
+        return customUserDetailsService;
     }
+   // @Bean
+   // public UserDetailsService userDetailService() {
+     //   return username -> clienteRepository.findByRut(username)
+       //         .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    //}
 }
