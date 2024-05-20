@@ -16,6 +16,8 @@ La respuesta se devuelve en mismo orden, pasando por la capa de datos, servicio 
 
 
 Spring Security:
+
+PROCESO DE AUTENTICACION.
 Funcionamiento.
 Es un framework de Spring que aporta un conjunto de clases que permite que la autenticación se realice mediante nombre de usuario y contraseña.
 Para utilizar los servicios de autentificación, es necesario configurar un filtro, junto con AuthenticationProvider.
@@ -42,6 +44,10 @@ UserDetailsService.
 Interfaz de acceso a datos de Spring, que contiene un unico metodo llamado loadUserByUsername().
 Mediante este metodo, accede a la informacion del usuario mediante su nombre de usuario.
 
+
+
+PROCESO DE FILTROS.
+Aca se definen a que recursos tiene acceso el usuario, segun sus autorizaciones.
 
 
 
