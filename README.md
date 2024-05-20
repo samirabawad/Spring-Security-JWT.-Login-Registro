@@ -99,11 +99,7 @@ PROCESO DE AUTENTICACION JWT.
 
 PROCESO DE SPRING SECURITY + JWT.
 
-#NOTA: AUTHENTICATION MANAGER SE CONECTA A AUTHENTICATIONSERVICE, NO A AUTHENTICATION CONTROLLER, ERROR MIO JEJE. ABAJO ESTA EL EJEMPLO COMPLETO CORRECTO 
-(no encontre mi diagrama :( )
-
-![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/6ced1a24-56a0-401f-9efc-4c7637fc2cdf)
-
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/43964be1-1dbd-4eda-955c-252e1f030412)
 
 
 SPRING SECURITY PARA VARIOS TIPOS DE USUARIO Y ROLES:
