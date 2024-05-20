@@ -11,6 +11,7 @@ La peticion HTTP, pasa por la capa de controlador, donde accede a la capa de ser
 La respuesta se devuelve en mismo orden, pasando por la capa de datos, servicio y controlador, para ser visto por el usuario.
 
 
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/5d324d2b-888c-408a-ade0-4a5c91b7e27c)
 
 
 
