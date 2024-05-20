@@ -85,9 +85,17 @@ Un token se compone de:
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/4dda5039-3366-4d3e-9c95-4336f66dc6d5)
 
 
-   
+
+PROCESO DE AUTENTICACION JWT.
+1. El request es interceptado por el filtro, el cual verifica si existe o no un JWT.
+2. Si no existen token de acceso, se deniega la solicitud HTTP.
+3. Si existe un Token de acceso, se dirige a JWTService para extraer el username del token. Luego verifica que el token sea valido.
+4. Luego, retorna el username al filtro, el cual lo envia a UserDetailsService. Dentro, mediante el metodo loadUserByUsername() crea el objeto usuario implementando UserDetails.
+5. El usuario es devuelto al filtro.
+6. Si hay usuario, se acepta la solicitud y se envia al controlador, donde se genera la respuesta HTTP en formato json al cliente.
 
 
 
+PROCESO DE SPRING SECURITY + JWT.
 
 
