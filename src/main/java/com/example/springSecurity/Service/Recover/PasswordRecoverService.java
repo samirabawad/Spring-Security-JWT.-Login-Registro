@@ -31,13 +31,11 @@ public class PasswordRecoverService {
     //RECOVERS por  RUT.
     public RecoverResponse recoverUser(RecoverRequest request) {
         UserDetails user = customUserDetailsService.loadUserByUsername(request.getRut());
-        String token = jwtrecoverService.getRecoveryToken(user); // Se genera token Recovery si existe usuario.
+        String token = jwtrecoverService.getRecoveryToken(user); // Generate recovery token if user exists
 
-
-        // Almacena el código y el token en VerificationCodeStorage
-       // verificationCodeStorage.storeCode(token, code);
-        //sendPasswordResetEmail(token, code);
-
+        // Store the token with the username as the key
+        System.out.println("Storing Token: " + token + " for User: " + user.getUsername());
+        verificationCodeStorage.storeCode(user.getUsername(), token);
         return RecoverResponse.builder()
                 .token(token)
                 .message("Se ha enviado un correo electrónico")

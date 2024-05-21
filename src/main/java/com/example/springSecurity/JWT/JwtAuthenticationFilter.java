@@ -78,6 +78,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String tokenType = (String) claims.get("tipo");
         System.out.println(tokenType);
 
+
         if(tokenType.equals("acceso")){
             rut = jwtAuthService.getUsernameFromToken(token);
         }else if(tokenType.equals("recuperacion")){

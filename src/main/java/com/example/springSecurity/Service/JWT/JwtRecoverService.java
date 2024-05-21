@@ -33,6 +33,7 @@ public class JwtRecoverService {
                 .setSubject(cliente.getUsername()) //RECORDAR QUE ESTO LO SOBREESCRIBIMOS PARA QUE OBTENGA EL RUT
                 .claim("tipo", "recuperacion") // Agregar campo tipo
                 .claim("code", code)
+                .claim("resetpassword", false)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) // Token válido por 30 minutos
                 .signWith(getRecoveryKey(), SignatureAlgorithm.HS256)

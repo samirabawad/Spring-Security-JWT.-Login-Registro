@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class CodeVerificationRequest {
-    private String rut;
-    private String code;
+public class NewPasswordResponse {
+    private String mensaje;
 }

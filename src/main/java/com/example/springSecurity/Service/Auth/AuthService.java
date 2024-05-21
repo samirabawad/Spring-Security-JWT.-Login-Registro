@@ -40,7 +40,7 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(token)
                 .build();
-    }
+        }
 
     //REGISTROS
     //Registro para Cliente.
