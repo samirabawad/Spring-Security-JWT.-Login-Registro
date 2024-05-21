@@ -69,6 +69,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             claims = Jwts.parserBuilder().setSigningKey("586E3272357538782F413F4428472B4B6250655368566B597033733676397924").build().parseClaimsJws(token).getBody();
 
         }catch(Exception e){
+            //recover
             claims = Jwts.parserBuilder().setSigningKey("78393920323332376147466A324D52316661636B4668475162636A764D464541").build().parseClaimsJws(token).getBody();
 
         }

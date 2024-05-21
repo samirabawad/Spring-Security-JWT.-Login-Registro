@@ -16,15 +16,22 @@ import org.springframework.web.bind.annotation.*;
 public class ResetPassword {
     private final VerificationCodeService verificationCodeService;
 
-    //Es redirigido aca solo si se le entrego el token de ReseteoPassword (ver config es securityconfig)
-    //@PostMapping(value = "codeVerification")
-    //public ResponseEntity<CodeVerificationResponse> verificationCode(@RequestBody CodeVerificationRequest code){
-      //  return ResponseEntity.ok(verificationCodeService.verificationCode(code));
-    //}
-
-    @PostMapping(value = "codeVerification")
+    @PostMapping(value = "codeVerificationExample")
     public String welcome() {
+
         return "recuperando cod verificacion  desde secure endpoint";
     }
-}
+
+    @PostMapping(value="codeVerification")
+    public ResponseEntity<CodeVerificationResponse> codeVerification(
+                @RequestBody CodeVerificationRequest codeRequest,
+                @RequestHeader("Authorization") String authHeader) {
+            System.out.println("Request received with token: " + authHeader); // Log para depuración
+            String token = authHeader.substring(7); // Remueve "Bearer "
+            codeRequest.setToken(token);
+
+            CodeVerificationResponse response = verificationCodeService.verificationCode(codeRequest);
+            return ResponseEntity.ok(response);
+        }
+    }
 

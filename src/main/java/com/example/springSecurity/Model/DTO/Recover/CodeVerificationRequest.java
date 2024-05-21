@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CodeVerificationRequest {
-    String code;
-    String token;
+    private String token;
+    private String code;
 }

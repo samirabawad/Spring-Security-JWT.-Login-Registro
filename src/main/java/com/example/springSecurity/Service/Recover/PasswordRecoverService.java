@@ -6,9 +6,12 @@ import com.example.springSecurity.Model.DTO.Recover.VerificationCodeClass;
 import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;
+import com.example.springSecurity.Repositories.RepositoryUsers.VerificationCodeStorage;
 import com.example.springSecurity.Service.Auth.CustomUserDetailsService;
 import com.example.springSecurity.Service.JWT.JwtRecoverService;
 import com.example.springSecurity.Util.VerificationCode;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,24 +27,26 @@ public class PasswordRecoverService {
     private final VerificationCodeStorage verificationCodeStorage;
 
 
+
     //RECOVERS por  RUT.
     public RecoverResponse recoverUser(RecoverRequest request) {
-        //authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getRut(), request.getPassword()));
-        UserDetails user =  customUserDetailsService.loadUserByUsername(request.getRut());
-        String token = jwtrecoverService.getRecoveryToken(user); //Se genera token Recovery si existe usuario.
+        UserDetails user = customUserDetailsService.loadUserByUsername(request.getRut());
+        String token = jwtrecoverService.getRecoveryToken(user); // Se genera token Recovery si existe usuario.
 
-        String code =verificationCode.verificationCode();
-        String mensageSender = sendPasswordResetEmail(token, code);
 
         // Almacena el código y el token en VerificationCodeStorage
-        verificationCodeStorage.storeCode(token, code);
+       // verificationCodeStorage.storeCode(token, code);
+        //sendPasswordResetEmail(token, code);
 
         return RecoverResponse.builder()
                 .token(token)
-                .message("Se ha enviado un correo electronico")
+                .message("Se ha enviado un correo electrónico")
                 .build();
     }
+
+
     public String sendPasswordResetEmail(String token, String code){
-        return "codigo enviado";
+
+        return "codigo enviado"+code;
     }
 }
