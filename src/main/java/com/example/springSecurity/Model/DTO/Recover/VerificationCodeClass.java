@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecoverResponse {
+public class VerificationCodeClass {
     String token;
-    String message;
+    String code;
 }

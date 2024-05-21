@@ -1,5 +1,6 @@
 package com.example.springSecurity.Model.DTO.Recover;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecoverResponse {
+public class ResetResponse {
     String token;
-    String message;
+    String rut;
 }

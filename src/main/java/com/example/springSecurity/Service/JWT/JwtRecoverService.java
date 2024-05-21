@@ -28,6 +28,7 @@ public class JwtRecoverService {
                 .builder()
                 .setClaims(extraclaims)
                 .setSubject(cliente.getUsername()) //RECORDAR QUE ESTO LO SOBREESCRIBIMOS PARA QUE OBTENGA EL RUT
+                .claim("tipo", "recuperacion") // Agregar campo tipo
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) // Token válido por 30 minutos
                 .signWith(getRecoveryKey(), SignatureAlgorithm.HS256)
@@ -60,10 +61,10 @@ public class JwtRecoverService {
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
-
     }
     private Date getExpirationDate(String token) {
         return getRecoveryClaim(token, Claims::getExpiration);
     }
+
 
 }

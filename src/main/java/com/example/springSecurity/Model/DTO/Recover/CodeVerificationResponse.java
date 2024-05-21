@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class RecoverResponse {
-    String token;
-    String message;
+public class CodeVerificationResponse {
+    String mensaje;
 }

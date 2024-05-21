@@ -29,6 +29,7 @@ public class JwtAuthService {
                 .builder()
                 .setClaims(extraclaims)
                 .setSubject(cliente.getUsername())//RECORDAR QUE ESTO LO SOBREESCRIBIMOS PARA QUE OBTENGA EL RUT
+                .claim("tipo", "acceso") // Agregar campo tipo
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
                 .signWith(getKey(), SignatureAlgorithm.HS256)
@@ -52,8 +53,6 @@ public class JwtAuthService {
     private boolean isTokenExpired(String token) {
         return getExpirationDate(token).before(new Date());
     }
-
-
 
     public String getUsernameFromToken(String token) {
         return getClaim(token, Claims::getSubject);
