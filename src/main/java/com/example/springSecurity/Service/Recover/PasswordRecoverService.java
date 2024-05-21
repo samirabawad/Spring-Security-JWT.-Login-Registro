@@ -37,7 +37,6 @@ public class PasswordRecoverService {
         System.out.println("Storing Token: " + token + " for User: " + user.getUsername());
         verificationCodeStorage.storeCode(user.getUsername(), token);
         return RecoverResponse.builder()
-                .token(token)
                 .message("Se ha enviado un correo electrónico")
                 .build();
     }

@@ -22,18 +22,12 @@ public class ResetPassword {
     }
 
 
-
-    @PostMapping(value = "resetPassword")
-    public ResponseEntity<NewPasswordResponse> resetPassword(
-            @RequestBody NewPasswordRequest newpassword,
-            @RequestHeader("Authorization") String authHeader) {
-        System.out.println("Request received with token en reset controller: " + authHeader); // Log para depuración
-        String token = authHeader.substring(7); // Remueve "Bearer "
-        newpassword.setToken(token);
-
-        NewPasswordResponse response = passwordResetService.resetPassword(newpassword);
-        return ResponseEntity.ok(response);
-
+    //@PostMapping(value = "resetPassword")
+    //public String resetPassword(
+      //      @RequestBody String newpassword) {
+        //return "contrasena modificada como: " + newpassword;
+    //}
+}
         //Boolean resetpasswordvar = verificationCodeService.isResetPassword(token);
         // Verificar si resetPassword es true en el token
         //if (!resetpasswordvar) {
@@ -44,7 +38,5 @@ public class ResetPassword {
         //return "resetPassword fuera del if: +"+resetpasswordvar;
         //NewPasswordResponse response = PasswordResetService.resetpassword(newpassword);
         // return ResponseEntity.ok(response);
-    }
 
-}
 
