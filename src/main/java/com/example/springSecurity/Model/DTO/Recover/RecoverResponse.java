@@ -11,4 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RecoverResponse {
     String token;
+    String message;
 }

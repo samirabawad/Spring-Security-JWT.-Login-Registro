@@ -2,6 +2,8 @@ package com.example.springSecurity.JWT;
 
 import com.example.springSecurity.Service.JWT.JwtAuthService;
 import com.example.springSecurity.Service.JWT.JwtRecoverService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +33,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     //SE VALIDA SI EL TOKEN ES VALIDO AUN.
     private boolean isTokenValid(String token, UserDetails userDetails, String requestURI) {
-        if (requestURI.contains("/auth/recover/user")) {
+        if (requestURI.contains("/reset/codeVerification")) {
             return jwtRecoverService.isRecoveryTokenValid(token, userDetails);
         } else {
             return jwtAuthService.isTokenValid(token, userDetails);
@@ -53,29 +55,53 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String token = getTokenFromRequest(request);
         final String rut;
+       // final String rutRecover;
 
         if(token == null) {
             filterChain.doFilter(request, response);
             return;
         }
-        //1. INTENTA OBTENER RUT DEL TOKEN.
-        rut = jwtAuthService.getUsernameFromToken(token);
+        Claims claims = null; // Declarar la variable fuera del try-catch
 
-        //2. SI NO LO OBTIENE, LO INTENTA OBTENER DE LA BASE DE DATOS.
-        if(rut != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userDetailsService.loadUserByUsername(rut);
+        //FUNCIONA, Me toma el tipo de token (acceso o recuperacion)
+        try{
+            //auth
+            claims = Jwts.parserBuilder().setSigningKey("586E3272357538782F413F4428472B4B6250655368566B597033733676397924").build().parseClaimsJws(token).getBody();
 
-            //SE OBTIENE EL TOKEN GENERADO (ACCESO O RECUPERACION) Y SE VALIDA.
-            if(isTokenValid(token, userDetails, request.getRequestURI())){
-                UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
-                        userDetails,
-                        null,
-                        userDetails.getAuthorities());
+        }catch(Exception e){
+            claims = Jwts.parserBuilder().setSigningKey("78393920323332376147466A324D52316661636B4668475162636A764D464541").build().parseClaimsJws(token).getBody();
 
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        }
+        // Procesar los claims
+        System.out.println(claims.getSubject());
+        String tokenType = (String) claims.get("tipo");
+        System.out.println(tokenType);
 
-                SecurityContextHolder.getContext().setAuthentication(authToken);
+        if(tokenType.equals("acceso")){
+            rut = jwtAuthService.getUsernameFromToken(token);
+        }else if(tokenType.equals("recuperacion")){
+            rut = jwtRecoverService.getUsernameFromToken(token);
+        }else{
+            rut = null;
+        }
+
+        if(rut != null) {
+            if(SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = userDetailsService.loadUserByUsername(rut);
+                //SE OBTIENE EL TOKEN GENERADO (ACCESO O RECUPERACION) Y SE VALIDA.
+                if(isTokenValid(token, userDetails, request.getRequestURI())){
+                    UsernamePasswordAuthenticationToken authToken= new UsernamePasswordAuthenticationToken(
+                            userDetails,
+                            null,
+                            userDetails.getAuthorities());
+
+                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                    SecurityContextHolder.getContext().setAuthentication(authToken);
+                }
             }
+        }else{
+            //
         }
         filterChain.doFilter(request, response);
     }

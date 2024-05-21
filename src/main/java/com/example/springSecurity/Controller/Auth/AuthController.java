@@ -40,15 +40,10 @@ public class AuthController {
         return ResponseEntity.ok(authService.registerEmpresa(request));
     }
 
-    //envia de respuesta el token de recuperacion
+    //Envia respuesta de se ha enviado un correo electronico, se debe redirigir en el front al endpoint /verificationCode
     @PostMapping(value = "recover")
     public ResponseEntity<RecoverResponse> recoverUser(@RequestBody RecoverRequest request) {
         return ResponseEntity.ok(passwordRecoverService.recoverUser(request));
     }
-    //envia de respuesta el token de recuperacion
-    //@PostMapping(value = "reset/password")
-    //public ResponseEntity<ResetResponse> resetPassword() {
-      //  return ResponseEntity.ok(passwordResetService.resetPassword());
-    //}
 }
 
