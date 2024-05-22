@@ -149,6 +149,3 @@ Posteriormente se redirige al usuario a un nuevo endpoint publico en donde pueda
 Se le pide al usuario que ingrese al nuevo endpoint privado, al que podra acceder por que a tiene su token de acceso al endpoint. Es aca donde se le solicita al usuario que ingrese su nueva contraseña. Posteriormente se debe enviar esta contraseña a un servicio correspondiente donde lo envie a la base de datos para hacer el cambio. Luego, se debe hacer expirar el token de recuperación y redirigir el usuario al login. Así tambien, se debe eliminar este claveÑvalor de la lista de localStorage.
 
 
-
->>>>>>> master
-
