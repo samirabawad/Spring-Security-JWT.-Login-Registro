@@ -99,8 +99,12 @@ PROCESO DE AUTENTICACION JWT.
 
 PROCESO DE SPRING SECURITY + JWT.
 
+<<<<<<< HEAD
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/6ced1a24-56a0-401f-9efc-4c7637fc2cdf)
 
+=======
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/43964be1-1dbd-4eda-955c-252e1f030412)
+>>>>>>> master
 
 
 SPRING SECURITY PARA VARIOS TIPOS DE USUARIO Y ROLES:
@@ -116,10 +120,35 @@ RegisterRequestCliente, RegisterRequestEmpresa. En este proyecto estan guardadas
 
 Se agregan las clases en el controlador, como tipos de request a recibir en los endpoints correspondientes.
 
+<<<<<<< HEAD
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/54398a91-f383-4d96-930a-6561f7fe4baa)
 
 
 La estructura del proyecto completo queda de la siguiente forma:
 
 ![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/0e7be151-9dce-414c-a339-790586f977a4)
+=======
+La estructura del proyecto completo queda de la siguiente forma:
+
+![image](https://github.com/samirabawad/Spring-Security-JWT.-Login-Registro/assets/136211595/8b682169-9821-4b4e-abab-2f647237d01b)
+
+
+
+SEGUNDO PROCESO: RECUPERACIÓN DE CONTRASEÑA.
+
+En el proceso anterior se realizo la autenticación para los endpoints de login y registro. A continuación se explica como realizar el proceso de autenticación para la recuperación de contraseña con JWT y Spring Security.
+
+Lo primero es definir el endpoint para la recuperación de contraseña, donde el usuario ingresa su username. Este endpoint debe estar declarado como publico, para que cualquier persona pueda acceder a el (en este proyecto, el endpoint se llama /auth/recover).
+
+Luego se verifica si el usuario existe en la base de datos. Si existe, se genera un token en un jwtService, donde se incluye en sus claims el codigo de verificación y su username o algun identificador unico del usuario. Es importante destacar que la SECRET_KEY debe ser distinta para una mayor seguridad. Este token generado es almacenado temporalmente con clave:valor en un localStorage.
+
+Luego, se envía un correo electronico con el token generado, para que el usuario pueda recibir el codigo de verificación. En este proyecto, se guarda el token asociado a su key user en la clase VerificationCodeStorage (quizas podria guardarse solo usuario y codigo), que contendra una lista de todos las claves valor de tokens generados.
+
+Posteriormente se redirige al usuario a un nuevo endpoint publico en donde pueda ingresar el codigo de verificación. Al recibir el codigo, se implementa en un servicio la logica de comparación del codigo recibido con el enviado por correo. Para esto, se le solicita al usuario que ingrese su username, y se busque en el localStorage su token correspondiente. Del token correspondiente se extrae el codigo de verificación y se almacena en una variable, para posteriormente verificar si ambos codigos calzan. Si ambos codigos calzan, se le entrega el token de recuperación.
+
+Se le pide al usuario que ingrese al nuevo endpoint privado, al que podra acceder por que a tiene su token de acceso al endpoint. Es aca donde se le solicita al usuario que ingrese su nueva contraseña. Posteriormente se debe enviar esta contraseña a un servicio correspondiente donde lo envie a la base de datos para hacer el cambio. Luego, se debe hacer expirar el token de recuperación y redirigir el usuario al login. Así tambien, se debe eliminar este claveÑvalor de la lista de localStorage.
+
+
+
+>>>>>>> master
 
