@@ -1,5 +1,4 @@
-package com.example.springSecurity.Model.DTO.Recover;
-
+package com.example.springSecurity.Model.DTO.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResetResponse {
-    String token;
+public class RegisterRequestCliente {
     String rut;
+    String password;
+    String firstname;
+    String lastname;
+    String email;
+    String celular;
 }

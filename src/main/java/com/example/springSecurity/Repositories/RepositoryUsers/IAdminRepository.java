@@ -1,6 +1,6 @@
 package com.example.springSecurity.Repositories.RepositoryUsers;
 
-import com.example.springSecurity.Model.Entitys.User.Admin;
+import com.example.springSecurity.Model.Entitys.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

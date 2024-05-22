@@ -1,4 +1,4 @@
-package com.example.springSecurity.Service.JWT;
+package com.example.springSecurity.Service.Auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.SignatureAlgorithm;

@@ -1,4 +1,4 @@
-package com.example.springSecurity.Model.DTO.Recover;
+package com.example.springSecurity.Model.DTO.Auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerificationCodeClass {
-    String token;
-    String code;
+public class CodeVerificationRequest {
+    private String rut;
+    private String code;
 }

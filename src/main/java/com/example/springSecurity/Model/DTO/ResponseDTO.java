@@ -1,4 +1,4 @@
-package com.example.springSecurity.Model.DTO.Recover;
+package com.example.springSecurity.Model.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder //para construir los objetos
 @AllArgsConstructor
 @NoArgsConstructor
-public class NewPasswordResponse {
-    private String mensaje;
+public class ResponseDTO {
+    String mensaje;
 }

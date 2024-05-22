@@ -1,8 +1,8 @@
 package com.example.springSecurity.Service.Auth;
 
-import com.example.springSecurity.Model.Entitys.User.Admin;
-import com.example.springSecurity.Model.Entitys.User.Cliente;
-import com.example.springSecurity.Model.Entitys.User.Empresa;
+import com.example.springSecurity.Model.Entitys.Admin;
+import com.example.springSecurity.Model.Entitys.Cliente;
+import com.example.springSecurity.Model.Entitys.Empresa;
 import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
 import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;

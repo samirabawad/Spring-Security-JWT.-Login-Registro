@@ -1,7 +1,7 @@
 package com.example.springSecurity.JWT;
 
-import com.example.springSecurity.Service.JWT.JwtAuthService;
-import com.example.springSecurity.Service.JWT.JwtRecoverService;
+import com.example.springSecurity.Service.Auth.JwtAuthService;
+import com.example.springSecurity.Service.Auth.JwtRecoverService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.FilterChain;

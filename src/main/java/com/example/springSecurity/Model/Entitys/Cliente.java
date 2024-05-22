@@ -1,4 +1,4 @@
-package com.example.springSecurity.Model.Entitys.User;
+package com.example.springSecurity.Model.Entitys;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

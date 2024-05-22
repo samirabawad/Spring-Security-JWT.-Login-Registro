@@ -1,5 +1,4 @@
-package com.example.springSecurity.Model.Entitys.User;
-
+package com.example.springSecurity.Model.Entitys;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,9 +17,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "empresa", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut"})})
+@Table(name = "admin", uniqueConstraints = {@UniqueConstraint(columnNames = {"rut"})})
 //implementa userDetails para trabajar con la autentificación
-public class Empresa implements UserDetails {
+public class Admin implements UserDetails {
     @Id
     @GeneratedValue
     Integer id;
@@ -29,14 +28,15 @@ public class Empresa implements UserDetails {
     @Column(nullable = false)
     String password;
     @Column(nullable = false)
-    String nombre;
+    String firstname;
     @Column(nullable = false)
-    String giro;
+    String lastname;
     String email;
     @Column(nullable = false)
     String celular;
     @Enumerated(EnumType.STRING)
     Role role;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,4 +71,5 @@ public class Empresa implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

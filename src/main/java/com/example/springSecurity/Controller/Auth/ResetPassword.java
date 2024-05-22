@@ -1,11 +1,7 @@
-package com.example.springSecurity.Controller.ResetPassword;
+package com.example.springSecurity.Controller.Auth;
 
-import com.example.springSecurity.Model.DTO.Recover.*;
-import com.example.springSecurity.Service.Recover.PasswordResetService;
-import com.example.springSecurity.Service.Recover.VerificationCodeService;
+import com.example.springSecurity.Service.Auth.VerificationCodeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ResetPassword {
     private final VerificationCodeService verificationCodeService;
-    private final PasswordResetService passwordResetService;
 
     @PostMapping(value = "codeVerificationExample")
     public String welcome() {
