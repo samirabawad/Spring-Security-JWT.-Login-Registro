@@ -1,8 +1,8 @@
-package com.example.springSecurity.Service.Auth;
+package com.example.springSecurity.Service;
 
 import com.example.springSecurity.Model.DTO.Auth.CodeVerificationRequest;
 import com.example.springSecurity.Model.DTO.ResponseDTO;
-import com.example.springSecurity.Repositories.RepositoryUsers.VerificationCodeStorage;
+import com.example.springSecurity.Repositories.VerificationCodeStorage;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;

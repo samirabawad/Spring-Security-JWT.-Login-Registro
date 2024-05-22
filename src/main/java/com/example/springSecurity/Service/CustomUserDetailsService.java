@@ -1,11 +1,11 @@
-package com.example.springSecurity.Service.Auth;
+package com.example.springSecurity.Service;
 
 import com.example.springSecurity.Model.Entitys.Admin;
 import com.example.springSecurity.Model.Entitys.Cliente;
 import com.example.springSecurity.Model.Entitys.Empresa;
-import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
-import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
-import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;
+import com.example.springSecurity.Repositories.IAdminRepository;
+import com.example.springSecurity.Repositories.IClienteRepository;
+import com.example.springSecurity.Repositories.IEmpresaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

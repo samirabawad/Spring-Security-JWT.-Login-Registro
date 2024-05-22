@@ -1,4 +1,4 @@
-package com.example.springSecurity.Service.Auth;
+package com.example.springSecurity.Service;
 
 import com.example.springSecurity.Util.VerificationCode;
 import io.jsonwebtoken.Claims;

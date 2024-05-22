@@ -1,4 +1,4 @@
-package com.example.springSecurity.Repositories.RepositoryUsers;
+package com.example.springSecurity.Repositories;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,10 @@
-package com.example.springSecurity.Controller.Auth;
+package com.example.springSecurity.Controller;
 
 import com.example.springSecurity.Model.DTO.Auth.*;
 import com.example.springSecurity.Model.DTO.ResponseDTO;
-import com.example.springSecurity.Service.Auth.AuthService;
-import com.example.springSecurity.Service.Auth.PasswordRecoverService;
-import com.example.springSecurity.Service.Auth.VerificationCodeService;
+import com.example.springSecurity.Service.AuthService;
+import com.example.springSecurity.Service.PasswordRecoverService;
+import com.example.springSecurity.Service.VerificationCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,6 +1,6 @@
-package com.example.springSecurity.Controller.Auth;
+package com.example.springSecurity.Controller;
 
-import com.example.springSecurity.Service.Auth.VerificationCodeService;
+import com.example.springSecurity.Service.VerificationCodeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

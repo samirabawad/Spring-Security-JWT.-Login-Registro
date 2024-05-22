@@ -1,6 +1,6 @@
 package com.example.springSecurity.Config;
 
-import com.example.springSecurity.Service.Auth.CustomUserDetailsService;
+import com.example.springSecurity.Service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

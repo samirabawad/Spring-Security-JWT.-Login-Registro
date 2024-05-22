@@ -1,4 +1,4 @@
-package com.example.springSecurity.Service.Auth;
+package com.example.springSecurity.Service;
 
 import com.example.springSecurity.Model.DTO.Auth.LoginRequest;
 import com.example.springSecurity.Model.DTO.Auth.RegisterRequestCliente;
@@ -7,9 +7,9 @@ import com.example.springSecurity.Model.DTO.ResponseDTO;
 import com.example.springSecurity.Model.Entitys.Cliente;
 import com.example.springSecurity.Model.Entitys.Empresa;
 import com.example.springSecurity.Model.Entitys.Role;
-import com.example.springSecurity.Repositories.RepositoryUsers.IAdminRepository;
-import com.example.springSecurity.Repositories.RepositoryUsers.IClienteRepository;
-import com.example.springSecurity.Repositories.RepositoryUsers.IEmpresaRepository;
+import com.example.springSecurity.Repositories.IAdminRepository;
+import com.example.springSecurity.Repositories.IClienteRepository;
+import com.example.springSecurity.Repositories.IEmpresaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
